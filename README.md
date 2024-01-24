@@ -1,6 +1,8 @@
 
 
-## Guide: Installing Arch Linux with GRUB KDE Plasma Dual Booted with Windows
+# Guide: Installing Arch Linux
+
+![Image Description](images/arch-config.png)
 
 *This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and KDE Plasma as the desktop environment.*
 
