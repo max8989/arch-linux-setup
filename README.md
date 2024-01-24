@@ -66,7 +66,7 @@ cfdisk /dev/nvme0n1
 | Partition | Size  | Type              |
 |-----------|-------|-------------------|
 | Boot      | 10G-30G | Linux filesystem |
-| Root      | 10G-30G | Linux filesystem |
+| Root      | Remaining Space | Linux filesystem |
 | Swap      | 10G     | Linux swap        |
 
 
