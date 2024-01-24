@@ -8,7 +8,7 @@
 
 ## Connect to wifi
 If there is no Ethernet connection available, use the Wi-Fi instead.
-```
+```sh
 # to manage wireless connections in Linux, use `iwctl` to enter the iwctl mode.
 iwctl
 
