@@ -70,6 +70,10 @@ cfdisk /dev/nvme0n1
 | Swap      | 10G     | Linux swap        |
 
 
+![Image Description](images/partitions.png)
+
+
+
 ### Format Boot and Root partitions:
 ```
 mkfs.ext4 /dev/nvme0n1p6
