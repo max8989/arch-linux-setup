@@ -4,28 +4,28 @@
 
 *This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and KDE Plasma as the desktop environment.*
 
-# Connect to wifi adapter
+## Connect to wifi
 ```
 iwctl
  ```
 
-### Show Device:
+ Show Device:
 ```
 device list
 ```
 
-### Show network:
+ Show network:
 ```
 station <device> get-networks
 ```
 
-### Connect:
+ Connect:
 ```
 station wlan0 connect <Network>
 ```
 
 
-### Set password to use ssh:
+ Set password to use ssh:
 ```
 passwd
 ```
@@ -36,7 +36,7 @@ ip -c a
 ```  
 
 
-### Update time date: 
+ Update time date: 
 
 ```
 timedatectl set-timezone America/New_York
@@ -46,7 +46,7 @@ timedatectl set-timezone America/New_York
 timedatectl status
 ```
 
-# Create partition:
+## Partitions:
 Check all drive:
  ```
 lsblk
@@ -72,20 +72,18 @@ cfdisk /dev/nvme0n1
 
 ![Image Description](images/partitions.png)
 
-
-
-### Format Boot and Root partitions:
+ Format Boot and Root partitions:
 ```
 mkfs.ext4 /dev/nvme0n1p6
 mkfs.ext4 /dev/nvme0n1p7
 ```
 
-### Format Swap partition: 
+ Format Swap partition: 
 ```
 mkswap /dev/nvme0n1p8
 ```
 
-### Enable Swap partition:
+ Enable Swap partition:
 ```
 swapon  /dev/nvme0n1p8 
 ```
