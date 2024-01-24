@@ -7,25 +7,21 @@
 *This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and KDE Plasma as the desktop environment.*
 
 ## Connect to wifi
+If there is no Ethernet connection available, use the Wi-Fi instead.
 ```
+# to manage wireless connections in Linux, use `iwctl` to enter the iwctl mode.
 iwctl
- ```
 
- Show Device:
-```
+# show device:
 device list
-```
 
- Show network:
-```
-station <device> get-networks
-```
+# wlan0 is my device
+# show network:
+station wlan0 get-networks
 
- Connect:
-```
+# connect:
 station wlan0 connect <Network>
 ```
-
 
  Set password to use ssh:
 ```
