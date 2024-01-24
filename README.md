@@ -15,12 +15,11 @@ iwctl
 # show device:
 device list
 
-# wlan0 is my device
-# show network:
+# show network: (wlan0 is my device)
 station wlan0 get-networks
 
 # connect:
-station wlan0 connect <Network>
+station wlan0 connect MyWifiNetwork
 ```
 
  Set password to use ssh:
