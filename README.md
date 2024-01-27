@@ -21,40 +21,35 @@ station wlan0 get-networks
 # connect:
 station wlan0 connect MyWifiNetwork
 ```
-
- Set password to use ssh:
-```
+ 
+## Configuration to use ssh
+```sh
+# set password to use ssh:
 passwd
-```
 
-Check ip address:
-```
+# check ip address:
 ip -c a
 ```  
 
 
  Update time date: 
 
-```
+```sh
 timedatectl set-timezone America/New_York
-```
 
-```
 timedatectl status
 ```
 
 ## Partitions:
-Check all drive:
- ```
-lsblk
-```
-Check more information: 
-```
-fdisk -l
-```
 
-Create partition:
-```
+ ```sh
+ # Check all drive:
+lsblk
+
+# Check more information: 
+fdisk -l
+
+# Create partition: (nvme0n1 is my drive)
 cfdisk /dev/nvme0n1
 ```
 
@@ -69,18 +64,16 @@ cfdisk /dev/nvme0n1
 
 ![Image Description](images/partitions.png)
 
- Format Boot and Root partitions:
-```
+## Format 3 new partitions:
+
+```sh
+# Format Boot and Root partitions:
 mkfs.ext4 /dev/nvme0n1p6
 mkfs.ext4 /dev/nvme0n1p7
-```
 
- Format Swap partition: 
-```
+# Format Swap partition: 
 mkswap /dev/nvme0n1p8
-```
 
- Enable Swap partition:
-```
+# Enable Swap partition:
 swapon  /dev/nvme0n1p8 
 ```
