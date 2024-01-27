@@ -201,3 +201,64 @@ vim /etc/hosts
 
 ![Image Description](images/hostnames.png)
 
+## Install Grup Bootloader:
+
+```sh
+# Install into EFI partition:
+mkdir /boot/efi
+mount /dev/nvme0n1p1 /boot/efi
+```
+
+![Image Description](images/mnt-grub.png)
+
+```sh
+# Install grub:
+pacman -S grub efibootmgr dosfstools mtools
+
+# Uncomment this last line:
+vim /etc/default/grub
+```
+
+![Image Description](images/grub-settings.png)
+
+```sh
+# config for dual boot
+pacman -S os-prober
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+![Image Description](images/boot-efi.png)
+
+## Network Config
+```sh 
+# Enable Network services:
+systemctl enable dhcpcd.service
+systemctl enable NetworkManager.service
+```
+
+![Image Description](images/network-service.png)
+
+## Unmount and reboot 
+
+```sh
+# Unmount all partitions:
+umount -lR /mnt
+
+# Reboot and eject usb boot:
+reboot
+```
+
+## Install KDE desktop environment 
+```sh
+sudo pacman -S xorg xorg-xinit xterm plasma plasma-desktop plasma-wayland-session kde-applications kdeplasma-addons sddm
+
+# Create config file to start kde on boot
+sudo vim ~/.xinitrc
+
+# Add this line
+exec startkde
+
+# Enable Display Manager:
+sudo systemctl enable sddm.service
+```
