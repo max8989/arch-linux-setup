@@ -4,6 +4,11 @@
 pacman_packages=(
     "vim"
     "neofetch"
+    "htop"
+    "curl"
+    "wget"
+    "tar"
+    "git"
 
     # Blutooth
     "bluez"

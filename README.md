@@ -325,7 +325,7 @@ lspci -k | grep -A 2 -E "(VGA|3D)"
 
 ```sh
 # give execute permission
-chmod +x install_aur_packages.sh
+sudo chmod +x install_packages.sh
 
 ./install_packages.sh
 ```
