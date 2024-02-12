@@ -254,7 +254,7 @@ umount -lR /mnt
 reboot
 ```
 
-## Install KDE desktop environment 
+## Install KDE Plasma desktop environment 
 ```sh
 sudo pacman -S xorg xorg-xinit xterm plasma plasma-desktop kde-applications kdeplasma-addons sddm
 
@@ -267,6 +267,24 @@ exec startplasma-x11
 
 # Enable Display Manager:
 sudo systemctl enable sddm.service
+
+reboot
+```
+
+## Install GNOME desktop environment 
+```sh
+sudo pacman -S xorg xorg-xinit xterm gnome gnome-extra gdm
+
+# Create config file to start kde on boot
+sudo vim ~/.xinitrc
+
+# Add these lines
+export XDG_SESSION_TYPE=x11
+export GDK_BACKEND=x11
+exec gnome-session
+
+# Enable Display Manager:
+sudo systemctl enable gdm.service
 
 reboot
 ```
