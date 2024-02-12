@@ -261,9 +261,40 @@ sudo pacman -S xorg xorg-xinit xterm plasma plasma-desktop kde-applications kdep
 # Create config file to start kde on boot
 sudo vim ~/.xinitrc
 
-# Add this line
-exec startkde
+# Add these lines
+export DESKTOP_SESSION=plasma
+exec startplasma-x11
 
 # Enable Display Manager:
 sudo systemctl enable sddm.service
+
+reboot
 ```
+
+## Install Nvidia driver
+
+```sh
+# find what card and drivers im using
+lspci -k | grep -A 2 -E "(VGA|3D)"
+```
+
+![Image Description](images/nouveau-driver.png)
+
+```sh
+# Install Nvidia driver
+sudo pacman -S nvidia
+```
+
+```sh
+# remove kms from hooks to prevent nouveau driver to start on boot
+sudo vim /etc/mkinitcpio.conf
+
+sudo reboot
+```
+![Image Description](images/hooks.png)
+
+```sh
+# make sure nvidia driver are being used
+lspci -k | grep -A 2 -E "(VGA|3D)"
+```
+!![Image Description](images/nvidia-driver.png)
