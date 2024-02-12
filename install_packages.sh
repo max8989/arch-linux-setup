@@ -12,7 +12,6 @@ pacman_packages=(
     "jdk-openjdk"
     "libreoffice-fresh"
     "vlc"
-    "touchegg"
 
     # Blutooth
     "bluez"
