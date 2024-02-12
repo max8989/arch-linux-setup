@@ -9,17 +9,26 @@ pacman_packages=(
     "wget"
     "tar"
     "git"
+    "jdk-openjdk"
+    "libreoffice-fresh"
+    "vlc"
+    "touchegg"
 
     # Blutooth
     "bluez"
     "blueman"
     "bluez-utils"
+
+    # Gnome extensions
+    "gnome-shell"
+    "gnome-tweaks"
 )
 
 aur_packages=(
     "pamac-aur"
     "brave-bin"
     "visual-studio-code-bin"
+    "timeshift"
 )
 
 # Update system package database
