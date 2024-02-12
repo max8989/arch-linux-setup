@@ -54,12 +54,15 @@ cfdisk /dev/nvme0n1
 ```
 
 ### Create 3 partitions
+swap is optional
 
 | Partition | Size  | Type              |
 |-----------|-------|-------------------|
 | Boot      | 10G-30G | Linux filesystem |
 | Root      | Remaining Space | Linux filesystem |
 | Swap      | 10G     | Linux swap        |
+
+after creating the disk, press write and quit
 
 
 ![Image Description](images/partitions.png)
@@ -121,8 +124,8 @@ cat /etc/pacman.d/mirrorlist
 ## Install Arch to Root Partition
 
 ```sh
-# install system packages
-pacstrap -i /mnt base base-devel linux linux-lts linux-headers linux-firmware intel-ucode sudo nano vim git neofetch networkmanager dhcpcd pulseaudio wpa_supplicant
+# install system packages (add linux-lts for lts version)
+pacstrap -i /mnt base base-devel linux linux-headers linux-firmware intel-ucode sudo nano vim git neofetch networkmanager dhcpcd pulseaudio wpa_supplicant
 
 # Generate File System Table FSTAB:
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -224,7 +227,9 @@ vim /etc/default/grub
 ```sh
 # config for dual boot
 pacman -S os-prober
+
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
@@ -251,7 +256,7 @@ reboot
 
 ## Install KDE desktop environment 
 ```sh
-sudo pacman -S xorg xorg-xinit xterm plasma plasma-desktop plasma-wayland-session kde-applications kdeplasma-addons sddm
+sudo pacman -S xorg xorg-xinit xterm plasma plasma-desktop kde-applications kdeplasma-addons sddm
 
 # Create config file to start kde on boot
 sudo vim ~/.xinitrc
