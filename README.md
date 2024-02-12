@@ -276,7 +276,7 @@ reboot
 
 ## Install GNOME desktop environment 
 ```sh
-sudo pacman -S xorg xorg-xinit xterm gnome gnome-extra gdm
+sudo pacman -S xorg xorg-xinit xterm gnome gnome-extra gnome-shell gnome-tweaks gdm
 
 # Create config file to start kde on boot
 sudo vim ~/.xinitrc

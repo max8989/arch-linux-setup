@@ -13,14 +13,11 @@ pacman_packages=(
     "libreoffice-fresh"
     "vlc"
 
+
     # Blutooth
     "bluez"
     "blueman"
     "bluez-utils"
-
-    # Gnome extensions
-    "gnome-shell"
-    "gnome-tweaks"
 )
 
 aur_packages=(
