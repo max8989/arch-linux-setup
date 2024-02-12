@@ -4,6 +4,11 @@
 pacman_packages=(
     "vim"
     "neofetch"
+
+    # Blutooth
+    "bluez"
+    "blueman"
+    "bluez-utils"
 )
 
 aur_packages=(
