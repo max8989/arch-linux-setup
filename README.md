@@ -2,9 +2,12 @@
 
 # Guide: Installing Arch Linux
 
+*This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and a desktop environment.*
+
+
 ![Image Description](images/arch-config.png)
 
-*This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and KDE Plasma as the desktop environment.*
+# Installation Steps
 
 ## Connect to wifi
 If there is no Ethernet connection available, use the Wi-Fi instead.
@@ -316,3 +319,13 @@ sudo reboot
 lspci -k | grep -A 2 -E "(VGA|3D)"
 ```
 !![Image Description](images/nvidia-driver.png)
+
+
+## Install Packages from install_packages.sh
+
+```sh
+# give execute permission
+chmod +x install_aur_packages.sh
+
+./install_packages.sh
+```
