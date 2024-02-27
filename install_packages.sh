@@ -20,12 +20,20 @@ pacman_packages=(
     "bluez-utils"
 )
 
+
 aur_packages=(
     "pamac-aur"
     "brave-bin"
     "visual-studio-code-bin"
     "timeshift"
 )
+
+# Prompt to install GNOME packages
+read -p "Do you want to install GNOME packages? (y/n): " install_gnome
+
+if [[ $install_gnome == "y" ]]; then
+    aur_packages+=("gnome-shell-extension-clipboard-history")
+fi
 
 # Update system package database
 echo "Updating system package database..."

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gsettings set org.gnome.desktop.interface scaling-factor 1.25
-
+# enable clipboard history (restart before it works)
+gnome-extensions enable clipboard-history@alexsaveau.dev
