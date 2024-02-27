@@ -13,7 +13,6 @@ pacman_packages=(
     "libreoffice-fresh"
     "vlc"
 
-
     # Blutooth
     "bluez"
     "blueman"
@@ -26,6 +25,8 @@ aur_packages=(
     "brave-bin"
     "visual-studio-code-bin"
     "timeshift"
+    "slack-desktop-wayland"
+    "spotify"
 )
 
 # Prompt to install GNOME packages
