@@ -12,6 +12,10 @@ pacman_packages=(
     "jdk-openjdk"
     "libreoffice-fresh"
     "vlc"
+    "discord"
+
+    # Fix screen sharing in Wayland for discord
+    "xwaylandvideobridge"
 
     # Blutooth
     "bluez"
@@ -27,6 +31,7 @@ aur_packages=(
     "timeshift"
     "slack-desktop-wayland"
     "spotify"
+    "notion-app-electron"
 )
 
 # Prompt to install GNOME packages
