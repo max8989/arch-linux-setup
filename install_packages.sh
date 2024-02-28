@@ -13,9 +13,7 @@ pacman_packages=(
     "libreoffice-fresh"
     "vlc"
     "discord"
-
-    # Fix screen sharing in Wayland for discord
-    "xwaylandvideobridge"
+    "thunderbird"
 
     # Blutooth
     "bluez"
@@ -38,7 +36,20 @@ aur_packages=(
 read -p "Do you want to install GNOME packages? (y/n): " install_gnome
 
 if [[ $install_gnome == "y" ]]; then
-    aur_packages+=("gnome-shell-extension-clipboard-history")
+    aur_packages+=(
+        "gnome-shell-extension-clipboard-history"
+        "gnome-shell-extension-gsconnect"
+        )
+fi
+
+# Prompt to install Wayland packages
+read -p "Do you want to install Wayland packages? (y/n): " install_wayland
+
+if [[ $install_gnome == "y" ]]; then
+    pacman_packages+=(
+         # Fix screen sharing in Wayland for discord
+        "xwaylandvideobridge"
+    )
 fi
 
 # Update system package database
