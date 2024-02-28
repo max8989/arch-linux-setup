@@ -45,7 +45,7 @@ fi
 # Prompt to install Wayland packages
 read -p "Do you want to install Wayland packages? (y/n): " install_wayland
 
-if [[ $install_gnome == "y" ]]; then
+if [[ $install_wayland == "y" ]]; then
     pacman_packages+=(
          # Fix screen sharing in Wayland for discord
         "xwaylandvideobridge"
