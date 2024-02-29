@@ -14,6 +14,9 @@ pacman_packages=(
     "vlc"
     "discord"
     "thunderbird"
+    "firefox"
+    "torbrowser-launcher"
+    "thunderbird"
 
     # Blutooth
     "bluez"
@@ -30,6 +33,7 @@ aur_packages=(
     "slack-desktop-wayland"
     "spotify"
     "notion-app-electron"
+    "google-chrome"
 )
 
 # Prompt to install GNOME packages
@@ -39,6 +43,7 @@ if [[ $install_gnome == "y" ]]; then
     aur_packages+=(
         "gnome-shell-extension-clipboard-history"
         "gnome-shell-extension-gsconnect"
+        "gnome-shell-extension-nightthemeswitcher"
         )
 fi
 
@@ -49,6 +54,18 @@ if [[ $install_wayland == "y" ]]; then
     pacman_packages+=(
          # Fix screen sharing in Wayland for discord
         "xwaylandvideobridge"
+    )
+fi
+
+# Prompt to install Wayland packages
+read -p "Do you want to install Dev packages? (y/n): " install_dev
+
+if [[ $install_dev == "y" ]]; then
+    pacman_packages+=(
+        "docker"
+    )
+    aur_packages+=(
+        "rider"
     )
 fi
 
