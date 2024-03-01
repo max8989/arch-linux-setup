@@ -63,9 +63,11 @@ read -p "Do you want to install Dev packages? (y/n): " install_dev
 if [[ $install_dev == "y" ]]; then
     pacman_packages+=(
         "docker"
+	    "docker-compose"
     )
     aur_packages+=(
         "rider"
+        "postman-bin"
     )
 fi
 
