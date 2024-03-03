@@ -45,6 +45,10 @@ if [[ $install_gnome == "y" ]]; then
         "gnome-shell-extension-gsconnect"
         "gnome-shell-extension-nightthemeswitcher"
         )
+
+    pacman_packages+=(
+        "gnome-browser-connector"
+    )
 fi
 
 # Prompt to install Wayland packages
@@ -68,6 +72,7 @@ if [[ $install_dev == "y" ]]; then
     aur_packages+=(
         "rider"
         "postman-bin"
+	    "datagrip"
     )
 fi
 
