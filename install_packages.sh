@@ -1,4 +1,16 @@
 #!/bin/bash
+function check_root() {
+    # Checking for root access and proceed if it is present
+    ROOT_UID=0
+    if [[ ! "${UID}" -eq "${ROOT_UID}" ]]; then
+        # Error message
+        echo 'Run me as root.'
+        echo 'Try sudo ./install_packages.sh'
+        exit 1
+    fi
+}
+
+check_root
 
 # Define a list of packages to install
 pacman_packages=(
@@ -17,6 +29,7 @@ pacman_packages=(
     "firefox"
     "torbrowser-launcher"
     "thunderbird"
+    "grub-customizer"
 
     # Blutooth
     "bluez"
@@ -34,6 +47,7 @@ aur_packages=(
     "spotify"
     "notion-app-electron"
     "google-chrome"
+    "p3x-onenote"
 )
 
 # Prompt to install GNOME packages
@@ -68,6 +82,7 @@ if [[ $install_dev == "y" ]]; then
     pacman_packages+=(
         "docker"
 	    "docker-compose"
+        "aws-cli-v2"
     )
     aur_packages+=(
         "rider"
