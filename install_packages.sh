@@ -30,6 +30,7 @@ pacman_packages=(
     "torbrowser-launcher"
     "thunderbird"
     "grub-customizer"
+    "flatpak"
 
     # Blutooth
     "bluez"
@@ -50,6 +51,8 @@ aur_packages=(
     "p3x-onenote"
 )
 
+flatpak_packages={}
+
 # Prompt to install GNOME packages
 read -p "Do you want to install GNOME packages? (y/n): " install_gnome
 
@@ -62,6 +65,11 @@ if [[ $install_gnome == "y" ]]; then
 
     pacman_packages+=(
         "gnome-browser-connector"
+    )
+
+    flatpak_packages+=(
+        "flathub"
+        "com.mattjakeman.ExtensionManager"
     )
 fi
 
@@ -88,6 +96,7 @@ if [[ $install_dev == "y" ]]; then
         "rider"
         "postman-bin"
 	    "datagrip"
+        "docker-desktop"
     )
 fi
 
@@ -137,5 +146,16 @@ for package in "${aur_packages[@]}"; do
         yay -S "$package" --noconfirm
     fi
 done
+
+for package in "${flatpak_packages[@]}"; do
+    # Check if the package is already installed
+    if flatpak list | grep $package &> /dev/null; then
+        echo "Package $package is already installed."
+    else
+        echo "Installing $package..."
+        flatpak install $package
+    fi
+done
+
 
 echo "Installation process complete."
