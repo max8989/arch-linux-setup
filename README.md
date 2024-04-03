@@ -100,6 +100,12 @@ mount /dev/nvme0n1p7 /mnt/home
 
 ![Image Description](images/mount-partition.png)
 
+## Connect to wifi in root
+
+```sh
+sudo nmcli dev wifi connect MY_WIFI password "MY_PASSWORD"
+```
+
 ## Sync mirrors servers
 
 ```sh
