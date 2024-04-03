@@ -1,16 +1,15 @@
-
-
 # Guide: Installing Arch Linux
 
-*This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and a desktop environment.*
-
+_This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and a desktop environment._
 
 ![Image Description](images/arch-config.png)
 
 # Installation Steps
 
 ## Connect to wifi
+
 If there is no Ethernet connection available, use the Wi-Fi instead.
+
 ```sh
 # to manage wireless connections in Linux, use `iwctl` to enter the iwctl mode.
 iwctl
@@ -24,18 +23,18 @@ station wlan0 get-networks
 # connect:
 station wlan0 connect MyWifiNetwork
 ```
- 
+
 ## Configuration to use ssh
+
 ```sh
 # set password to use ssh:
 passwd
 
 # check ip address:
 ip -c a
-```  
+```
 
-
- Update time date: 
+Update time date:
 
 ```sh
 timedatectl set-timezone America/New_York
@@ -45,11 +44,11 @@ timedatectl status
 
 ## Partitions:
 
- ```sh
- # Check all drive:
+```sh
+# Check all drive:
 lsblk
 
-# Check more information: 
+# Check more information:
 fdisk -l
 
 # Create partition: (nvme0n1 is my drive)
@@ -57,31 +56,33 @@ cfdisk /dev/nvme0n1
 ```
 
 ### Create 3 partitions
+
 swap is optional
 
-| Partition | Size  | Type              |
-|-----------|-------|-------------------|
-| Boot      | 10G-30G | Linux filesystem |
+| Partition | Size            | Type             |
+| --------- | --------------- | ---------------- |
+| Boot      | 10G-30G         | Linux filesystem |
 | Root      | Remaining Space | Linux filesystem |
-| Swap      | 10G     | Linux swap        |
+| Swap      | 10G             | Linux swap       |
 
 after creating the disk, press write and quit
-
 
 ![Image Description](images/partitions.png)
 
 ## Format 3 new partitions:
 
 ```sh
-# Format Boot and Root partitions:
-mkfs.ext4 /dev/nvme0n1p6
+# Format Boot partition
+mkfs.fat -F 32 /dev/nvme0n1p6
+
+# Format Root partition:
 mkfs.ext4 /dev/nvme0n1p7
 
-# Format Swap partition: 
+# Format Swap partition:
 mkswap /dev/nvme0n1p8
 
 # Enable Swap partition:
-swapon  /dev/nvme0n1p8 
+swapon  /dev/nvme0n1p8
 ```
 
 ![Image Description](images/format-partition.png)
@@ -99,7 +100,6 @@ mount /dev/nvme0n1p7 /mnt/home
 
 ![Image Description](images/mount-partition.png)
 
-
 ## Sync mirrors servers
 
 ```sh
@@ -113,7 +113,7 @@ mount /dev/nvme0n1p7 /mnt/home
 pacman -Sy
 
 # Install packman rank mirrors tool:
-pacman -S pacman-contrib   
+pacman -S pacman-contrib
 
 # Save top 10 mirrors list:
 rankmirrors -n 10 /etc/pacman.d/mirrorlist.bak /etc/pacman.d/mirrorlist
@@ -174,6 +174,7 @@ visudo
 ![Image Description](images/visudo.png)
 
 ## Set System Language:
+
 ```sh
 
 # Uncomment local: (en_US.UTF-8 UTF-8)
@@ -231,7 +232,7 @@ vim /etc/default/grub
 # config for dual boot
 pacman -S os-prober
 
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub_uefi --recheck
 
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -239,7 +240,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ![Image Description](images/boot-efi.png)
 
 ## Network Config
-```sh 
+
+```sh
 # Enable Network services:
 systemctl enable dhcpcd.service
 systemctl enable NetworkManager.service
@@ -247,7 +249,7 @@ systemctl enable NetworkManager.service
 
 ![Image Description](images/network-service.png)
 
-## Unmount and reboot 
+## Unmount and reboot
 
 ```sh
 # Unmount all partitions:
@@ -257,7 +259,8 @@ umount -lR /mnt
 reboot
 ```
 
-## Install KDE Plasma desktop environment 
+## Install KDE Plasma desktop environment
+
 ```sh
 sudo pacman -S xorg xorg-xinit xterm plasma plasma-desktop kde-applications kdeplasma-addons sddm
 
@@ -274,7 +277,8 @@ sudo systemctl enable sddm.service
 reboot
 ```
 
-## Install GNOME desktop environment 
+## Install GNOME desktop environment
+
 ```sh
 sudo pacman -S xorg xorg-xinit xterm gnome gnome-extra gnome-shell gnome-tweaks gdm
 
@@ -312,14 +316,15 @@ sudo vim /etc/mkinitcpio.conf
 
 sudo reboot
 ```
+
 ![Image Description](images/hooks.png)
 
 ```sh
 # make sure nvidia driver are being used
 lspci -k | grep -A 2 -E "(VGA|3D)"
 ```
-!![Image Description](images/nvidia-driver.png)
 
+!![Image Description](images/nvidia-driver.png)
 
 ## Install Packages from install_packages.sh
 
