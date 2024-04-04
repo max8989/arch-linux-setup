@@ -31,6 +31,7 @@ pacman_packages=(
     "thunderbird"
     "grub-customizer"
     "flatpak"
+    "bitwarden"
 
     # Blutooth
     "bluez"
@@ -47,7 +48,7 @@ aur_packages=(
     "slack-desktop-wayland"
     "spotify"
     "notion-app-electron"
-    "google-chrome"
+    "google-chrome" 
     "p3x-onenote"
 )
 
