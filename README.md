@@ -61,9 +61,9 @@ swap is optional
 
 | Partition | Size            | Type             |
 | --------- | --------------- | ---------------- |
-| Boot      | 10G-30G         | Linux filesystem |
+| Boot      | 1G              | EFI System       |
 | Root      | Remaining Space | Linux filesystem |
-| Swap      | 10G             | Linux swap       |
+| Swap      | 4-8G            | Linux swap       |
 
 after creating the disk, press write and quit
 
