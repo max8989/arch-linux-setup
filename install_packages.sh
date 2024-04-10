@@ -47,6 +47,7 @@ aur_packages=(
     "google-chrome" 
     "p3x-onenote"
     "teams-for-linux"
+    "valent"
 )
 
 flatpak_packages=()
