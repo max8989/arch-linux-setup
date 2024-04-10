@@ -2,10 +2,10 @@
 function check_root() {
     # Checking for root access and proceed if it is present
     ROOT_UID=0
-    if [[ ! "${UID}" -eq "${ROOT_UID}" ]]; then
+    if [[ "${UID}" -eq "${ROOT_UID}" ]]; then
         # Error message
-        echo 'Run me as root.'
-        echo 'Try sudo ./install_packages.sh'
+        echo 'Do not run me as root.'
+        echo 'Try ./install_packages.sh'
         exit 1
     fi
 }
@@ -32,11 +32,7 @@ pacman_packages=(
     "grub-customizer"
     "flatpak"
     "bitwarden"
-
-    # Blutooth
-    "bluez"
-    "blueman"
-    "bluez-utils"
+    "solaar"
 )
 
 
@@ -50,20 +46,25 @@ aur_packages=(
     "notion-app-electron"
     "google-chrome" 
     "p3x-onenote"
+    "teams-for-linux"
 )
 
-flatpak_packages={}
+flatpak_packages=()
+
+read -p "Do you want to enable bluetooth? (y/n): " enable_bluetooth
+
+if [[ $enable_bluetooth == "y" ]]; then
+    pacman_packages+=(
+        "bluez"
+        "blueman"
+        "bluez-utils"
+    )
+fi
 
 # Prompt to install GNOME packages
 read -p "Do you want to install GNOME packages? (y/n): " install_gnome
 
 if [[ $install_gnome == "y" ]]; then
-    aur_packages+=(
-        "gnome-shell-extension-clipboard-history"
-        "gnome-shell-extension-gsconnect"
-        "gnome-shell-extension-nightthemeswitcher"
-        )
-
     pacman_packages+=(
         "gnome-browser-connector"
     )
@@ -157,6 +158,11 @@ for package in "${flatpak_packages[@]}"; do
         flatpak install $package
     fi
 done
+
+if [[ $enable_bluetooth == "y" ]]; then
+    sudo systemctl enable bluetooth
+    sudo systemctl start bluetooth
+fi
 
 
 echo "Installation process complete."
