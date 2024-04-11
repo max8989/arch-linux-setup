@@ -48,6 +48,7 @@ aur_packages=(
     "p3x-onenote"
     "teams-for-linux"
     "valent"
+    "youtube-music"
 )
 
 flatpak_packages=()
