@@ -33,6 +33,7 @@ pacman_packages=(
     "flatpak"
     "bitwarden"
     "solaar"
+    "networkmanager-openvpn"
 )
 
 
