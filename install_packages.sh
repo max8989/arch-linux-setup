@@ -34,7 +34,8 @@ pacman_packages=(
     "bitwarden"
     "solaar"
     "networkmanager-openvpn",
-    "zip"
+    "zip",
+    "gimp"
 )
 
 
@@ -50,14 +51,15 @@ aur_packages=(
     "p3x-onenote"
     "teams-for-linux"
     "valent"
-    "youtube-music"
+    "youtube-music",
+    "messenger-nativefier"
 )
 
 flatpak_packages=()
 
-read -p "Do you want to enable bluetooth? (y/n): " enable_bluetooth
+read -p "Do you want to enable bluetooth? default(n) (y/n): " enable_bluetooth
 
-if [[ $enable_bluetooth == "y" ]]; then
+if [[ $enable_bluetooth == "y" || $enable_bluetooth == "Y" ]]; then
     pacman_packages+=(
         "bluez"
         "blueman"
@@ -66,9 +68,9 @@ if [[ $enable_bluetooth == "y" ]]; then
 fi
 
 # Prompt to install GNOME packages
-read -p "Do you want to install GNOME packages? (y/n): " install_gnome
+read -p "Do you want to install GNOME packages? default(n) (y/n) :" install_gnome
 
-if [[ $install_gnome == "y" ]]; then
+if [[ $install_gnome == "y" || $install_gnome == "Y" ]]; then
     pacman_packages+=(
         "gnome-browser-connector"
     )
@@ -80,9 +82,9 @@ if [[ $install_gnome == "y" ]]; then
 fi
 
 # Prompt to install Wayland packages
-read -p "Do you want to install Wayland packages? (y/n): " install_wayland
+read -p "Do you want to install Wayland packages? default(n) (y/n) : " install_wayland
 
-if [[ $install_wayland == "y" ]]; then
+if [[ $install_wayland == "y" || $install_wayland == "Y" ]]; then
     pacman_packages+=(
          # Fix screen sharing in Wayland for discord
         "xwaylandvideobridge"
@@ -90,9 +92,9 @@ if [[ $install_wayland == "y" ]]; then
 fi
 
 # Prompt to install Wayland packages
-read -p "Do you want to install Dev packages? (y/n): " install_dev
+read -p "Do you want to install Dev packages? default(n) (y/n): " install_dev
 
-if [[ $install_dev == "y" ]]; then
+if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     pacman_packages+=(
         "docker"
 	    "docker-compose"
