@@ -24,6 +24,21 @@ station wlan0 get-networks
 station wlan0 connect MyWifiNetwork
 ```
 
+## Erase Drive
+(only on single boot)
+
+```sh
+# enter gdisk mode
+gdisk /dev/nvme0ne
+
+# enter expert mode
+x
+
+# Erase the drive 
+z
+
+```
+
 ## Configuration to use ssh
 
 ```sh

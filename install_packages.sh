@@ -53,6 +53,7 @@ aur_packages=(
     "valent"
     "youtube-music",
     "messenger-nativefier"
+    "nwg-look"
 )
 
 flatpak_packages=()
