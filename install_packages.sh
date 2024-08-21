@@ -51,7 +51,7 @@ aur_packages=(
     "p3x-onenote"
     "teams-for-linux"
     "valent"
-    "youtube-music",
+    "youtube-music-bin",
     "messenger-nativefier"
     "nwg-look"
 )
@@ -100,6 +100,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
         "docker"
 	    "docker-compose"
         "aws-cli-v2"
+        "dotnet-sdk"
     )
     aur_packages+=(
         "rider"
