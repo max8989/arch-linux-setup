@@ -99,10 +99,11 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     pacman_packages+=(
         "docker"
 	    "docker-compose"
-        "aws-cli-v2"
         "dotnet-sdk"
+        "aspnet-runtime"
     )
     aur_packages+=(
+        "aws-cli-v2-bin"
         "rider"
         "postman-bin"
 	    "datagrip"
