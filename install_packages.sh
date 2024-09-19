@@ -36,6 +36,7 @@ pacman_packages=(
     "networkmanager-openvpn",
     "zip",
     "gimp"
+    "qbittorrent"
 )
 
 
