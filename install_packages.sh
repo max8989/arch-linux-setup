@@ -37,6 +37,7 @@ pacman_packages=(
     "zip",
     "gimp"
     "qbittorrent"
+    "zed"
 )
 
 
