@@ -40,6 +40,8 @@ pacman_packages=(
     "zed"
     "prettier"
     "gitui"
+    "adobe-source-han-sans-otc-fonts"
+    "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
 )
 
 
@@ -53,9 +55,9 @@ aur_packages=(
     "notion-app-electron"
     "google-chrome"
     "p3x-onenote"
-    "teams-for-linux"
+    "teams-for-linux-git"
     "valent"
-    "youtube-music-bin",
+    "youtube-music",
     "messenger-nativefier"
     "nwg-look"
 )
@@ -78,6 +80,7 @@ read -p "Do you want to install GNOME packages? default(n) (y/n) :" install_gnom
 if [[ $install_gnome == "y" || $install_gnome == "Y" ]]; then
     pacman_packages+=(
         "gnome-browser-connector"
+        "power-profiles-daemon"
     )
 
     flatpak_packages+=(
@@ -175,6 +178,11 @@ done
 if [[ $enable_bluetooth == "y" ]]; then
     sudo systemctl enable bluetooth
     sudo systemctl start bluetooth
+fi
+
+if [[ $install_gnome == "y" ]]; then
+    systemctl enable --now power-profiles-daemon.service
+    sudo systemctl start power-profiles-daemon.service
 fi
 
 
