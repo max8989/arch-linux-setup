@@ -42,6 +42,7 @@ pacman_packages=(
     "gitui"
     "adobe-source-han-sans-otc-fonts"
     "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
+    "evernote-beta-bin"
 )
 
 
