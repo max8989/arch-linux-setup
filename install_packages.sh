@@ -21,7 +21,6 @@ pacman_packages=(
     "wget"
     "tar"
     "git"
-    "jdk-openjdk"
     "libreoffice-fresh"
     "vlc"
     "discord"
@@ -61,6 +60,7 @@ aur_packages=(
     "youtube-music",
     "messenger-nativefier"
     "nwg-look"
+    "cursor-bin"
 )
 
 flatpak_packages=()
@@ -109,6 +109,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
 	    "docker-compose"
         "dotnet-sdk"
         "aspnet-runtime"
+        "jdk-openjdk"
     )
     aur_packages+=(
         "aws-cli-v2-bin"
