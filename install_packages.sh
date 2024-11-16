@@ -42,6 +42,7 @@ pacman_packages=(
     "adobe-source-han-sans-otc-fonts"
     "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
     "obsidian"
+    "rustup"
 )
 
 
@@ -54,7 +55,6 @@ aur_packages=(
     "spotify"
     "notion-app-electron"
     "google-chrome"
-    "p3x-onenote"
     "teams-for-linux-git"
     "valent"
     "youtube-music",
