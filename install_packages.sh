@@ -117,6 +117,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
         "postman-bin"
 	    "datagrip"
         "docker-desktop"
+        "supabase-bin"
     )
 fi
 
