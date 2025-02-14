@@ -61,6 +61,7 @@ aur_packages=(
     "messenger-nativefier"
     "nwg-look"
     "cursor-bin"
+    "zen-browser-bin"
 )
 
 flatpak_packages=()
