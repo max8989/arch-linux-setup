@@ -42,7 +42,6 @@ pacman_packages=(
     "adobe-source-han-sans-otc-fonts"
     "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
     "obsidian"
-    "rustup"
 )
 
 
@@ -57,7 +56,6 @@ aur_packages=(
     "google-chrome"
     "teams-for-linux-git"
     "valent"
-    "youtube-music",
     "messenger-nativefier"
     "nwg-look"
     "cursor-bin"
@@ -119,6 +117,14 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
 	    "datagrip"
         "docker-desktop"
         "supabase-bin"
+    )
+fi
+
+read -p "Do you want to setup security? default(n) (y/n): " setup_security
+
+if [[ $setup_security == "y" || $setup_security == "Y" ]]; then
+    pacman_packages+=(
+        "ufw"
     )
 fi
 
@@ -189,5 +195,14 @@ if [[ $install_gnome == "y" ]]; then
     sudo systemctl start power-profiles-daemon.service
 fi
 
+if [[ $setup_security == "y" ]]; then
+    # Setup firewall rules
+    sudo ufw limit 22/tcp
+    sudo ufw allow 80/tcp
+    sudo ufw allow 443/tcp
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw enable
+fi
 
 echo "Installation process complete."
