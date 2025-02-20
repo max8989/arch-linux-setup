@@ -137,7 +137,6 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "wofi"
         "waybar"
         "ttf-font-awesome"
-        "wl-clipboard"
     )
 
     aur_packages+=(
@@ -151,6 +150,8 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "ttf-cascadia-code-nerd"
         "nwg-look"
         "catppuccin-gtk-theme-macchiato"
+        "catppuccin-gtk-theme-latte"
+        "catppuccin-gtk-theme-frappe"
     )
 fi
 
