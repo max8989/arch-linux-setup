@@ -137,6 +137,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "wofi"
         "waybar"
         "ttf-font-awesome"
+        "polkit-gnome" # used to authenticate to use gnome apps
     )
 
     aur_packages+=(
