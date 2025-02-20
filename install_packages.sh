@@ -128,6 +128,32 @@ if [[ $setup_security == "y" || $setup_security == "Y" ]]; then
     )
 fi
 
+read -p "Do you want to install Hyprland? default(n) (y/n): " install_hyprland
+
+if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
+    pacman_packages+=(
+        "hyprland"
+        "kitty"
+        "wofi"
+        "waybar"
+        "ttf-font-awesome"
+        "wl-clipboard"
+    )
+
+    aur_packages+=(
+        "hyprshot"
+        "swaync"
+        "hyprlock"
+        "hypridle"
+        "stow"
+        "hyprpaper"
+        "starship"
+        "ttf-cascadia-code-nerd"
+        "nwg-look"
+        "catppuccin-gtk-theme-macchiato"
+    )
+fi
+
 # Update system package database
 echo "Updating system package database..."
 sudo pacman -Sy
@@ -193,6 +219,11 @@ fi
 if [[ $install_gnome == "y" ]]; then
     systemctl enable --now power-profiles-daemon.service
     sudo systemctl start power-profiles-daemon.service
+fi
+
+if [[ $install_hyprland == "y" ]]; then
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
+    source ~/.bashrc
 fi
 
 if [[ $setup_security == "y" ]]; then
