@@ -42,6 +42,7 @@ pacman_packages=(
     "adobe-source-han-sans-otc-fonts"
     "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
     "obsidian"
+    "yazi"
 )
 
 
@@ -138,6 +139,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "waybar"
         "ttf-font-awesome"
         "polkit-gnome" # used to authenticate to use gnome apps
+        "brightnessctl"
     )
 
     aur_packages+=(
@@ -150,9 +152,9 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "starship"
         "ttf-cascadia-code-nerd"
         "nwg-look"
-        "catppuccin-gtk-theme-macchiato"
         "catppuccin-gtk-theme-latte"
         "catppuccin-gtk-theme-frappe"
+        "catppuccin-cursors-frappe"
     )
 fi
 
