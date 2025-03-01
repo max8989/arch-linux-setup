@@ -140,6 +140,14 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "ttf-font-awesome"
         "polkit-gnome" # used to authenticate to use gnome apps
         "brightnessctl"
+        "cliphist"
+        # used to fix screen sharing BEGIN
+        "wireplumber"
+        "xdg-desktop-portal-hyprland"
+        "grim"
+        "slurp"
+        "pipewire"
+        # used to fix screen sharing END
     )
 
     aur_packages+=(
