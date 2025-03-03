@@ -116,7 +116,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
         "rider"
         "postman-bin"
 	    "datagrip"
-        "docker-desktop"
+        "rancher-desktop"
         "supabase-bin"
     )
 fi
