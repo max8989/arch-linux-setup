@@ -141,6 +141,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "polkit-gnome" # used to authenticate to use gnome apps
         "brightnessctl"
         "cliphist"
+        "wf-recorder"
         # used to fix screen sharing BEGIN
         "wireplumber"
         "xdg-desktop-portal-hyprland"

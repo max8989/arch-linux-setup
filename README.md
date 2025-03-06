@@ -2,6 +2,10 @@
 
 _This guide provides step-by-step instructions on how to install Arch Linux alongside Windows, using GRUB as the bootloader and a desktop environment._
 
+> **Note:** If you only need to install the packages and skip the full installation process, you can directly run:
+> ```bash
+> chmod +x install_packages.sh && ./install_packages.sh
+> ```
 ![Image Description](images/arch-config.png)
 
 # Installation Steps
@@ -34,7 +38,7 @@ gdisk /dev/nvme0ne
 # enter expert mode
 x
 
-# Erase the drive 
+# Erase the drive
 z
 
 ```
