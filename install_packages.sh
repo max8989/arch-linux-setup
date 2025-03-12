@@ -164,6 +164,18 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "catppuccin-gtk-theme-latte"
         "catppuccin-gtk-theme-frappe"
         "catppuccin-cursors-frappe"
+        "wlogout"
+    )
+fi
+
+read -p "Do you want to install Chinese keyboard input support? default(n) (y/n): " enable_chinese_input
+if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
+    pacman_packages+=(
+        "fcitx5"
+        "fcitx5-chinese-addons"
+        "fcitx5-gtk"
+        "fcitx5-configtool"
+        "kwindowsystem"
     )
 fi
 
@@ -247,6 +259,14 @@ if [[ $setup_security == "y" ]]; then
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
     sudo ufw enable
+fi
+
+if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
+    # Add Chinese input environment variables
+    echo 'export GTK_IM_MODULE=fcitx' >> ~/.bashrc
+    echo 'export QT_IM_MODULE=fcitx' >> ~/.bashrc
+    echo 'export XMODIFIERS=@im=fcitx' >> ~/.bashrc
+    source ~/.bashrc
 fi
 
 echo "Installation process complete."
