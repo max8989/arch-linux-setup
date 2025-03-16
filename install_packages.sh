@@ -165,6 +165,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "catppuccin-gtk-theme-frappe"
         "catppuccin-cursors-frappe"
         "wlogout"
+        "hyprswitch"
     )
 fi
 
