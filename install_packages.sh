@@ -161,9 +161,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "starship"
         "ttf-cascadia-code-nerd"
         "nwg-look"
-        "catppuccin-gtk-theme-latte"
-        "catppuccin-gtk-theme-frappe"
-        "catppuccin-cursors-frappe"
+        "graphite-gtk-theme"
         "wlogout"
         "hyprswitch"
     )
