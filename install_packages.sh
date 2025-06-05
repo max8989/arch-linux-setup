@@ -171,10 +171,12 @@ read -p "Do you want to install Chinese keyboard input support? default(n) (y/n)
 if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
     pacman_packages+=(
         "fcitx5"
-        "fcitx5-chinese-addons"
-        "fcitx5-gtk"
+        "fcitx5-rime"
         "fcitx5-configtool"
-        "kwindowsystem"
+        "fcitx5-gtk"
+        "fcitx5-qt"
+        "rime-luna-pinyin"
+        "rime-terra-pinyin"
     )
 fi
 
@@ -262,9 +264,9 @@ fi
 
 if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
     # Add Chinese input environment variables
-    echo 'export GTK_IM_MODULE=fcitx' >> ~/.bashrc
-    echo 'export QT_IM_MODULE=fcitx' >> ~/.bashrc
-    echo 'export XMODIFIERS=@im=fcitx' >> ~/.bashrc
+    echo "export GTK_IM_MODULE=fcitx" >> ~/.bashrc
+    echo "export QT_IM_MODULE=fcitx" >> ~/.bashrc
+    echo "export XMODIFIERS=@im=fcitx" >> ~/.bashrc
     source ~/.bashrc
 fi
 
