@@ -142,6 +142,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "brightnessctl"
         "cliphist"
         "wf-recorder"
+	"rofi"
         # used to fix screen sharing BEGIN
         "wireplumber"
         "xdg-desktop-portal-hyprland"
