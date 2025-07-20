@@ -165,6 +165,8 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "graphite-gtk-theme"
         "wlogout"
         "hyprswitch"
+	"graphite-gtk-theme"
+	"catppuccin-cursors"
     )
 fi
 
