@@ -43,6 +43,7 @@ pacman_packages=(
     "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
     "obsidian"
     "yazi"
+    "neovim"
 )
 
 
