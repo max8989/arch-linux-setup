@@ -91,16 +91,6 @@ if [[ $install_gnome == "y" || $install_gnome == "Y" ]]; then
 fi
 
 # Prompt to install Wayland packages
-read -p "Do you want to install Wayland packages? default(n) (y/n) : " install_wayland
-
-if [[ $install_wayland == "y" || $install_wayland == "Y" ]]; then
-    pacman_packages+=(
-         # Fix screen sharing in Wayland for discord
-        "xwaylandvideobridge"
-    )
-fi
-
-# Prompt to install Wayland packages
 read -p "Do you want to install Dev packages? default(n) (y/n): " install_dev
 
 if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
@@ -165,7 +155,6 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
         "graphite-gtk-theme"
         "wlogout"
         "hyprswitch"
-	"graphite-gtk-theme"
 	"catppuccin-cursors"
     )
 fi
