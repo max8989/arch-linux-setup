@@ -44,6 +44,7 @@ pacman_packages=(
   "yazi"
   "neovim"
   "fd"
+  "ripgrep"
 )
 
 aur_packages=(
