@@ -36,7 +36,6 @@ pacman_packages=(
   "gimp"
   "qbittorrent"
   "zed"
-  "prettier"
   "lazygit"
   "adobe-source-han-sans-otc-fonts"
   "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
@@ -48,21 +47,16 @@ pacman_packages=(
 )
 
 aur_packages=(
+  "neofetch"
   "pamac-aur"
-  "brave-bin"
-  "visual-studio-code-bin"
   "timeshift"
   "slack-desktop-wayland"
   "spotify"
-  "notion-app-electron"
   "google-chrome"
   "teams-for-linux-git"
   "valent"
-  "messenger-nativefier"
   "nwg-look"
-  "cursor-bin"
   "zen-browser-bin"
-  "neofetch"
 )
 
 flatpak_packages=()
@@ -110,6 +104,9 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "datagrip"
     "rancher-desktop"
     "supabase-bin"
+    "prettier"
+    "cursor-bin"
+    "visual-studio-code-bin"
   )
 fi
 
