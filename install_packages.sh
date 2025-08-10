@@ -12,6 +12,10 @@ function check_root() {
 
 check_root
 
+# Run this command if both Gnome and Hyprland are installed together (fix video rendering issue and firefox crash
+# systemctl --user mask xdg-desktop-portal-gnome.service
+# systemctl --user restart xdg-desktop-portal.service
+
 # Define a list of packages to install
 pacman_packages=(
   "vim"
