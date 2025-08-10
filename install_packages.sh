@@ -154,7 +154,8 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "graphite-gtk-theme"
     "wlogout"
     "hyprswitch"
-    "catppuccin-cursors"
+    "catppuccin-cursors-frappe"
+    "ant-dracula-theme-git"
   )
 fi
 
@@ -240,8 +241,10 @@ fi
 
 if [[ $install_hyprland == "y" ]]; then
   echo 'eval "$(starship init bash)"' >>~/.bashrc
-  source ~/.bashrc
 fi
+
+# Add clear alias
+echo 'alias c="clear"' >>~/.bashrc
 
 if [[ $setup_security == "y" ]]; then
   # Setup firewall rules
@@ -258,7 +261,8 @@ if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
   echo "export GTK_IM_MODULE=fcitx" >>~/.bashrc
   echo "export QT_IM_MODULE=fcitx" >>~/.bashrc
   echo "export XMODIFIERS=@im=fcitx" >>~/.bashrc
-  source ~/.bashrc
 fi
+
+source ~/.bashrc
 
 echo "Installation process complete."
