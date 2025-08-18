@@ -48,6 +48,7 @@ pacman_packages=(
   "neovim"
   "fd"
   "ripgrep"
+  "pavucontrol"
 )
 
 aur_packages=(
@@ -57,7 +58,6 @@ aur_packages=(
   "slack-desktop-wayland"
   "spotify"
   "google-chrome"
-  "teams-for-linux-git"
   "valent"
   "nwg-look"
   "zen-browser-bin"
@@ -106,7 +106,6 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "rider"
     "postman-bin"
     "datagrip"
-    "rancher-desktop"
     "supabase-bin"
     "prettier"
     "cursor-bin"
@@ -155,7 +154,6 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "starship"
     "ttf-cascadia-code-nerd"
     "nwg-look"
-    "graphite-gtk-theme"
     "wlogout"
     "hyprswitch"
     "catppuccin-cursors-frappe"
@@ -244,6 +242,8 @@ if [[ $install_gnome == "y" ]]; then
 fi
 
 if [[ $install_hyprland == "y" ]]; then
+  # Fix screen sharing
+  exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   echo 'eval "$(starship init bash)"' >>~/.bashrc
 fi
 
@@ -263,8 +263,8 @@ fi
 if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
   # Add Chinese input environment variables
   echo "export GTK_IM_MODULE=fcitx" >>~/.bashrc
-  echo "export QT_IM_MODULE=fcitx" >>~/.bashrc
   echo "export XMODIFIERS=@im=fcitx" >>~/.bashrc
+  echo "export QT_IM_MODULE=fcitx" >>~/.bashrc
 fi
 
 source ~/.bashrc
