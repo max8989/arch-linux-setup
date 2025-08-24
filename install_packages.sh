@@ -106,10 +106,8 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
   aur_packages+=(
     "aws-cli-v2-bin"
     "rider"
-    "postman-bin"
     "datagrip"
     "supabase-bin"
-    "prettier"
     "cursor-bin"
     "visual-studio-code-bin"
   )
