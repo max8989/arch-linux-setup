@@ -135,6 +135,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "cliphist"
     "wf-recorder"
     "rofi"
+    "swayosd-git"
     # used to fix screen sharing BEGIN
     "wireplumber"
     "xdg-desktop-portal-hyprland"
