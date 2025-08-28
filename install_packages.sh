@@ -159,6 +159,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "hyprswitch"
     "catppuccin-cursors-frappe"
     "ant-dracula-theme-git"
+    "lazydocker":
   )
 fi
 
