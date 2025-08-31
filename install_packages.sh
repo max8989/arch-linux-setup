@@ -249,8 +249,33 @@ if [[ $install_hyprland == "y" ]]; then
   echo 'eval "$(starship init bash)"' >>~/.bashrc
 fi
 
-# Add clear alias
-echo 'alias c="clear"' >>~/.bashrc
+# Function to add alias if not present
+add_alias_if_not_present() {
+  local alias_cmd="$1"
+  local alias_name=$(echo "$alias_cmd" | cut -d'=' -f1 | sed 's/alias //')
+  
+  if ! grep -q "^alias $alias_name=" ~/.bashrc; then
+    echo "$alias_cmd" >>~/.bashrc
+    echo "Added alias: $alias_name"
+  else
+    echo "Alias $alias_name already exists"
+  fi
+}
+
+# Add useful aliases
+add_alias_if_not_present 'alias grep="grep --color=auto"'
+add_alias_if_not_present 'alias df="df -h"'
+add_alias_if_not_present 'alias du="du -h -c"'
+add_alias_if_not_present 'alias free="free -h"'
+add_alias_if_not_present 'alias ls="ls --color=auto"'
+add_alias_if_not_present 'alias ll="ls -lh"'
+add_alias_if_not_present 'alias la="ls -A"'
+add_alias_if_not_present 'alias l="ls -CF"'
+add_alias_if_not_present 'alias lla="ls -lha"'
+add_alias_if_not_present 'alias c="clear"'
+add_alias_if_not_present 'alias q="exit"'
+add_alias_if_not_present 'alias ..="cd .."'
+add_alias_if_not_present 'alias ...="cd ../.."'
 
 if [[ $setup_security == "y" ]]; then
   # Setup firewall rules
