@@ -159,7 +159,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "hyprswitch"
     "catppuccin-cursors-frappe"
     "ant-dracula-theme-git"
-    "lazydocker":
+    "lazydocker"
   )
 fi
 
@@ -267,6 +267,10 @@ if [[ $enable_chinese_input == "y" || $enable_chinese_input == "Y" ]]; then
   echo "export GTK_IM_MODULE=fcitx" >>~/.bashrc
   echo "export XMODIFIERS=@im=fcitx" >>~/.bashrc
   echo "export QT_IM_MODULE=fcitx" >>~/.bashrc
+  
+  # Enable and start fcitx5 service
+  systemctl --user enable fcitx5
+  systemctl --user start fcitx5
 fi
 
 source ~/.bashrc
