@@ -52,6 +52,7 @@ pacman_packages=(
   "ripgrep"
   "pavucontrol"
   "fastfetch"
+  "btop"
 )
 
 aur_packages=(
