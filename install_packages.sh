@@ -51,10 +51,10 @@ pacman_packages=(
   "fd"
   "ripgrep"
   "pavucontrol"
+  "fastfetch"
 )
 
 aur_packages=(
-  "neofetch"
   "pamac-aur"
   "timeshift"
   "slack-desktop-wayland"
@@ -276,6 +276,7 @@ add_alias_if_not_present 'alias c="clear"'
 add_alias_if_not_present 'alias q="exit"'
 add_alias_if_not_present 'alias ..="cd .."'
 add_alias_if_not_present 'alias ...="cd ../.."'
+add_alias_if_not_present 'alias neofetch="fastfetch"'
 
 if [[ $setup_security == "y" ]]; then
   # Setup firewall rules
