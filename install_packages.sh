@@ -63,6 +63,7 @@ aur_packages=(
   "valent"
   "nwg-look"
   "zen-browser-bin"
+  "localsend-bin"
 )
 
 flatpak_packages=()
