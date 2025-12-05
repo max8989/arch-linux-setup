@@ -104,14 +104,15 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "dotnet-sdk"
     "aspnet-runtime"
     "jdk-openjdk"
+    "aws-cli"
   )
   aur_packages+=(
-    "aws-cli-v2-bin"
     "rider"
     "datagrip"
     "supabase-bin"
     "cursor-bin"
     "visual-studio-code-bin"
+    "insomnia-bin"
   )
 fi
 
@@ -124,6 +125,8 @@ if [[ $setup_security == "y" || $setup_security == "Y" ]]; then
 fi
 
 read -p "Do you want to install Hyprland? default(n) (y/n): " install_hyprland
+
+read -p "Do you want to setup Kanata (Caps Lock + vim keys = arrow keys)? default(n) (y/n): " setup_kanata
 
 if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
   pacman_packages+=(
@@ -163,6 +166,10 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "ant-dracula-theme-git"
     "lazydocker"
   )
+
+  if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
+    aur_packages+=("kanata-bin")
+  fi
 fi
 
 read -p "Do you want to install Chinese keyboard input support? default(n) (y/n): " enable_chinese_input
@@ -245,10 +252,36 @@ if [[ $install_gnome == "y" ]]; then
   sudo systemctl start power-profiles-daemon.service
 fi
 
+# Function to setup kanata keyboard remapping
+setup_kanata_config() {
+  echo "Setting up kanata keyboard remapping..."
+
+  # Create uinput group if it doesn't exist
+  if ! getent group uinput >/dev/null; then
+    sudo groupadd uinput
+  fi
+
+  # Add user to input and uinput groups
+  sudo usermod -aG input $USER
+  sudo usermod -aG uinput $USER
+
+  # Create udev rule for kanata
+  echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' | sudo tee /etc/udev/rules.d/99-kanata.rules
+
+  # Reload udev rules
+  sudo udevadm control --reload-rules && sudo udevadm trigger
+
+  echo "Kanata setup complete. You'll need to log out and back in for group changes to take effect."
+}
+
 if [[ $install_hyprland == "y" ]]; then
   # Fix screen sharing
   exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   echo 'eval "$(starship init bash)"' >>~/.bashrc
+
+  if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
+    setup_kanata_config
+  fi
 fi
 
 # Function to add alias if not present
