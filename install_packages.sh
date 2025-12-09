@@ -140,7 +140,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "cliphist"
     "wf-recorder"
     "rofi"
-    "swayosd-git"
+    "swayosd"
     # used to fix screen sharing BEGIN
     "wireplumber"
     "xdg-desktop-portal-hyprland"
@@ -165,6 +165,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "catppuccin-cursors-frappe"
     "ant-dracula-theme-git"
     "lazydocker"
+    "hyprwat-bin"
   )
 
   if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
@@ -265,8 +266,18 @@ setup_kanata_config() {
   sudo usermod -aG input $USER
   sudo usermod -aG uinput $USER
 
-  # Create udev rule for kanata
-  echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' | sudo tee /etc/udev/rules.d/99-kanata.rules
+  # Ensure uinput module is loaded at boot
+  echo "uinput" | sudo tee /etc/modules-load.d/uinput.conf
+
+  # Load the module now
+  sudo modprobe uinput
+
+  # Create udev rule for kanata (using SUBSYSTEM for more reliable matching)
+  # Also set ACL for current user to handle conflicts with other udev rules (e.g., brltty)
+  cat <<EOF | sudo tee /etc/udev/rules.d/99-kanata.rules
+KERNEL=="uinput", SUBSYSTEM=="misc", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+KERNEL=="uinput", SUBSYSTEM=="misc", RUN+="/usr/bin/setfacl -m u:$USER:rw /dev/uinput"
+EOF
 
   # Reload udev rules
   sudo udevadm control --reload-rules && sudo udevadm trigger
