@@ -85,7 +85,6 @@ read -p "Do you want to install GNOME packages? default(n) (y/n) :" install_gnom
 if [[ $install_gnome == "y" || $install_gnome == "Y" ]]; then
   pacman_packages+=(
     "gnome-browser-connector"
-    "power-profiles-daemon"
   )
 
   flatpak_packages+=(
@@ -148,6 +147,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "slurp"
     "pipewire"
     # used to fix screen sharing END
+    "power-profiles-daemon"
   )
 
   aur_packages+=(
@@ -247,11 +247,6 @@ if [[ $enable_bluetooth == "y" ]]; then
   sudo systemctl start bluetooth
 fi
 
-if [[ $install_gnome == "y" ]]; then
-  systemctl enable --now power-profiles-daemon.service
-  sudo systemctl start power-profiles-daemon.service
-fi
-
 # Function to setup kanata keyboard remapping
 setup_kanata_config() {
   echo "Setting up kanata keyboard remapping..."
@@ -282,6 +277,8 @@ if [[ $install_hyprland == "y" ]]; then
   if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
     setup_kanata_config
   fi
+  systemctl enable --now power-profiles-daemon.service
+  sudo systemctl start power-profiles-daemon.service
 fi
 
 # Function to add alias if not present
