@@ -148,6 +148,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "pipewire"
     # used to fix screen sharing END
     "power-profiles-daemon"
+    "yad"
   )
 
   aur_packages+=(
