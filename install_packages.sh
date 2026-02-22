@@ -139,7 +139,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "cliphist"
     "wf-recorder"
     "rofi"
-    "swayosd-git"
+    "swayosd"
     # used to fix screen sharing BEGIN
     "wireplumber"
     "xdg-desktop-portal-hyprland"
@@ -166,6 +166,7 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "catppuccin-cursors-frappe"
     "ant-dracula-theme-git"
     "lazydocker"
+    "hyprwat-bin"
   )
 
   if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
