@@ -253,20 +253,25 @@ fi
 setup_kanata_config() {
   echo "Setting up kanata keyboard remapping..."
 
-  # Create uinput group if it doesn't exist
+  # Create uinput group as a system group if it doesn't exist
+  # Must be a system group so udev can resolve it
   if ! getent group uinput >/dev/null; then
-    sudo groupadd uinput
+    sudo groupadd --system uinput
   fi
 
   # Add user to input and uinput groups
   sudo usermod -aG input $USER
   sudo usermod -aG uinput $USER
 
-  # Create udev rule for kanata
-  echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' | sudo tee /etc/udev/rules.d/99-kanata.rules
+  # Load uinput module now and ensure it loads on every boot
+  sudo modprobe uinput
+  echo "uinput" | sudo tee /etc/modules-load.d/uinput.conf
 
-  # Reload udev rules
-  sudo udevadm control --reload-rules && sudo udevadm trigger
+  # Create udev rule for kanata (no static_node - causes group resolution issues)
+  echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput"' | sudo tee /etc/udev/rules.d/99-kanata.rules
+
+  # Reload udev rules and retrigger the uinput device
+  sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=misc --action=add
 
   echo "Kanata setup complete. You'll need to log out and back in for group changes to take effect."
 }
