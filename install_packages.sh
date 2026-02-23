@@ -102,7 +102,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "docker-compose"
     "dotnet-sdk"
     "aspnet-runtime"
-    "jdk-openjdk"
+    "sdkman-bin"
     "aws-cli"
     "uv"
   )
