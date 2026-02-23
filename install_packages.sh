@@ -104,6 +104,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "aspnet-runtime"
     "jdk-openjdk"
     "aws-cli"
+    "uv"
   )
   aur_packages+=(
     "rider"
