@@ -53,6 +53,7 @@ pacman_packages=(
   "pavucontrol"
   "fastfetch"
   "btop"
+  "wl-clipboard"
 )
 
 aur_packages=(
@@ -113,6 +114,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "cursor-bin"
     "visual-studio-code-bin"
     "insomnia-bin"
+    "claude-code"
   )
 fi
 
@@ -317,6 +319,7 @@ add_alias_if_not_present 'alias q="exit"'
 add_alias_if_not_present 'alias ..="cd .."'
 add_alias_if_not_present 'alias ...="cd ../.."'
 add_alias_if_not_present 'alias neofetch="fastfetch"'
+add_alias_if_not_present 'alias pwdc="pwd | wl-copy"'
 
 if [[ $setup_security == "y" ]]; then
   # Setup firewall rules
