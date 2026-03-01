@@ -37,14 +37,15 @@ pacman_packages=(
   "flatpak"
   "bitwarden"
   "solaar"
-  "networkmanager-openvpn",
-  "zip",
+  "networkmanager-openvpn"
+  "zip"
   "gimp"
   "qbittorrent"
   "zed"
   "lazygit"
   "adobe-source-han-sans-otc-fonts"
-  "adobe-source-han-serif-otc-fonts noto-fonts-cjk"
+  "adobe-source-han-serif-otc-fonts"
+  "noto-fonts-cjk"
   "obsidian"
   "yazi"
   "neovim"
@@ -193,6 +194,52 @@ fi
 # Update system package database
 echo "Updating system package database..."
 sudo pacman -Sy
+
+# Check which pacman packages are missing
+missing_pacman=()
+for package in "${pacman_packages[@]}"; do
+  if ! pacman -Qi "$package" &>/dev/null; then
+    missing_pacman+=("$package")
+  fi
+done
+
+# Check which AUR packages are missing (requires yay)
+missing_aur=()
+if yay --version &>/dev/null; then
+  for package in "${aur_packages[@]}"; do
+    if ! yay -Q "$package" &>/dev/null; then
+      missing_aur+=("$package")
+    fi
+  done
+fi
+
+# Show missing packages and prompt
+if [[ ${#missing_pacman[@]} -gt 0 || ${#missing_aur[@]} -gt 0 ]]; then
+  echo ""
+  echo "The following packages will be installed:"
+  if [[ ${#missing_pacman[@]} -gt 0 ]]; then
+    echo ""
+    echo "  [pacman]"
+    for p in "${missing_pacman[@]}"; do
+      echo "    - $p"
+    done
+  fi
+  if [[ ${#missing_aur[@]} -gt 0 ]]; then
+    echo ""
+    echo "  [AUR]"
+    for p in "${missing_aur[@]}"; do
+      echo "    - $p"
+    done
+  fi
+  echo ""
+  read -p "Do you want to continue with the installation? (y/n): " confirm_install
+  if [[ $confirm_install != "y" && $confirm_install != "Y" ]]; then
+    echo "Installation aborted."
+    exit 0
+  fi
+else
+  echo "All packages are already installed."
+fi
 
 echo "Installing Pacman packages..."
 # Loop through the list of packages and install if not already installed
