@@ -320,6 +320,7 @@ add_alias_if_not_present 'alias ..="cd .."'
 add_alias_if_not_present 'alias ...="cd ../.."'
 add_alias_if_not_present 'alias neofetch="fastfetch"'
 add_alias_if_not_present 'alias pwdc="pwd | wl-copy"'
+add_alias_if_not_present 'alias cdc="pwd | xargs -I{} echo \"cd {}\" | wl-copy"'
 
 if [[ $setup_security == "y" ]]; then
   # Setup firewall rules
