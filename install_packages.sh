@@ -55,6 +55,7 @@ pacman_packages=(
   "fastfetch"
   "btop"
   "wl-clipboard"
+  "earlyoom"
 )
 
 aur_packages=(
@@ -369,6 +370,13 @@ add_alias_if_not_present 'alias neofetch="fastfetch"'
 add_alias_if_not_present 'alias pwdc="pwd | wl-copy"'
 add_alias_if_not_present 'alias cdc="pwd | xargs -I{} echo \"cd {}\" | wl-copy"'
 add_alias_if_not_present 'alias cdo="pwd | xargs -I{} echo \"cd {} && opencode\" | wl-copy"'
+
+# Enable earlyoom (prevents system freeze on out-of-memory)
+sudo systemctl enable --now earlyoom
+
+# Enable SysRq (emergency OOM kill with Alt+SysRq+F when system is frozen)
+echo "kernel.sysrq = 1" | sudo tee /etc/sysctl.d/99-sysrq.conf
+sudo sysctl --system
 
 if [[ $setup_security == "y" ]]; then
   # Setup firewall rules
