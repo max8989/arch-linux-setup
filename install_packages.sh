@@ -51,6 +51,7 @@ pacman_packages=(
   "neovim"
   "fd"
   "ripgrep"
+  "alsa-utils"
   "pavucontrol"
   "fastfetch"
   "btop"
