@@ -175,9 +175,10 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
     "hyprwat-bin"
   )
 
-  if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
-    aur_packages+=("kanata-bin")
-  fi
+fi
+
+if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
+  aur_packages+=("kanata-bin")
 fi
 
 read -p "Do you want to install Chinese keyboard input support? default(n) (y/n): " enable_chinese_input
@@ -296,7 +297,7 @@ for package in "${flatpak_packages[@]}"; do
   fi
 done
 
-if [[ $enable_bluetooth == "y" ]]; then
+if [[ $enable_bluetooth == "y" || $enable_bluetooth == "Y" ]]; then
   sudo systemctl enable bluetooth
   sudo systemctl start bluetooth
 fi
@@ -319,8 +320,11 @@ setup_kanata_config() {
   sudo modprobe uinput
   echo "uinput" | sudo tee /etc/modules-load.d/uinput.conf
 
-  # Create udev rule for kanata (no static_node - causes group resolution issues)
-  echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput"' | sudo tee /etc/udev/rules.d/99-kanata.rules
+  # Create udev rule for kanata.
+  # The RUN line uses setfacl to explicitly grant the uinput group rw access,
+  # overriding brltty's udev rule (90-brltty-uinput.rules) which sets group::--- via ACL.
+  echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", RUN+="/usr/bin/setfacl -m g:uinput:rw /dev/%k"' \
+    | sudo tee /etc/udev/rules.d/99-kanata.rules
 
   # Reload udev rules and retrigger the uinput device
   sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=misc --action=add
@@ -328,16 +332,17 @@ setup_kanata_config() {
   echo "Kanata setup complete. You'll need to log out and back in for group changes to take effect."
 }
 
-if [[ $install_hyprland == "y" ]]; then
+if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
   # Fix screen sharing
   exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   echo 'eval "$(starship init bash)"' >>~/.bashrc
 
-  if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
-    setup_kanata_config
-  fi
   systemctl enable --now power-profiles-daemon.service
   sudo systemctl start power-profiles-daemon.service
+fi
+
+if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
+  setup_kanata_config
 fi
 
 # Function to add alias if not present
