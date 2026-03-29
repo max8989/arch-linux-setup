@@ -57,6 +57,7 @@ pacman_packages=(
   "btop"
   "wl-clipboard"
   "earlyoom"
+  "bun"
 )
 
 aur_packages=(
