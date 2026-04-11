@@ -111,6 +111,7 @@ if [[ $install_dev == "y" || $install_dev == "Y" ]]; then
     "sdkman-bin"
     "aws-cli"
     "uv"
+    "azure-cli"
   )
   aur_packages+=(
     "rider"
