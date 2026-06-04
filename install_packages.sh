@@ -29,17 +29,14 @@ pacman_packages=(
   "libreoffice-fresh"
   "vlc"
   "discord"
-  "thunderbird"
   "firefox"
   "torbrowser-launcher"
-  "thunderbird"
   "grub-customizer"
   "flatpak"
   "bitwarden"
   "solaar"
   "networkmanager-openvpn"
   "zip"
-  "gimp"
   "qbittorrent"
   "zed"
   "lazygit"
@@ -379,6 +376,7 @@ add_alias_if_not_present 'alias neofetch="fastfetch"'
 add_alias_if_not_present 'alias pwdc="pwd | wl-copy"'
 add_alias_if_not_present 'alias cdo="pwd | xargs -I{} echo \"cd {} && opencode\" | wl-copy"'
 add_alias_if_not_present 'alias cdc="pwd | xargs -I{} echo \"cd {} && claude\" | wl-copy"'
+add_alias_if_not_present 'alias cdd="pwd | xargs -I{} echo \"cd {}\" | wl-copy"'
 
 # Enable earlyoom (prevents system freeze on out-of-memory)
 sudo systemctl enable --now earlyoom
