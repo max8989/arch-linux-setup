@@ -48,6 +48,13 @@ pacman_packages=(
   "neovim"
   "fd"
   "ripgrep"
+  "fzf"
+  "zoxide"
+  "eza"
+  "bat"
+  "zsh"
+  "zsh-autosuggestions"
+  "zsh-syntax-highlighting"
   "alsa-utils"
   "pavucontrol"
   "fastfetch"
@@ -339,6 +346,13 @@ if [[ $install_hyprland == "y" || $install_hyprland == "Y" ]]; then
 
   systemctl enable --now power-profiles-daemon.service
   sudo systemctl start power-profiles-daemon.service
+fi
+
+# Set zsh as the default login shell.
+# The ~/.zshrc itself is managed by the dots-hyprland "zsh" stow package
+# (starship/zoxide/fzf init, plugins and aliases live there).
+if command -v zsh >/dev/null 2>&1 && [[ "$SHELL" != *"zsh"* ]]; then
+  chsh -s "$(command -v zsh)"
 fi
 
 if [[ $setup_kanata == "y" || $setup_kanata == "Y" ]]; then
